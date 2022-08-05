@@ -1,5 +1,5 @@
 import 'package:daily_routine/navigation/routes.dart';
-import 'package:daily_routine/presentation/circular_chart.dart';
+import 'package:daily_routine/presentation/charts/circular_chart.dart';
 import 'package:flutter/material.dart';
 
 import '../presentation/home_page.dart';

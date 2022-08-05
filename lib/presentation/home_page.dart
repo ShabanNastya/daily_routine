@@ -1,4 +1,4 @@
-import 'package:daily_routine/presentation/bar_chart_with_api.dart';
+import 'package:daily_routine/presentation/charts/bar_chart_with_api.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {

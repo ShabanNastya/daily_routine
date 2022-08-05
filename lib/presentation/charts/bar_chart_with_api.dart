@@ -2,7 +2,7 @@ import 'package:daily_routine/data/network_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
 
-import '../domain/models/gender.dart';
+import '../../domain/models/gender.dart';
 
 
 class BarChartWithApi extends StatefulWidget {
@@ -46,9 +46,9 @@ class _BarChartWithApiState extends State<BarChartWithApi> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Bar chart with API'),
-      ),
+      // appBar: AppBar(
+      //   title: const Text('Bar chart with API'),
+      // ),
       body: Center(
         child: SizedBox(
           height: 250,

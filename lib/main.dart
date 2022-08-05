@@ -1,7 +1,9 @@
 import 'package:daily_routine/navigation/routes_handler.dart';
+import 'package:daily_routine/presentation/chat/chat_page.dart';
+import 'package:daily_routine/presentation/home_page.dart';
+import 'package:daily_routine/presentation/settings/settings_page.dart';
+import 'package:daily_routine/presentation/status/status_page.dart';
 import 'package:flutter/material.dart';
-
-import 'navigation/routes.dart';
 
 void main() {
   runApp(const MyApp());
@@ -34,33 +36,49 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  int _selectedIndex = 0;
+
+  final _widgetOptions = const [
+    HomePage(),
+    ChatPage(),
+    StatusPage(),
+    SettingsPage(),
+  ];
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            OutlinedButton(
-                onPressed: () {
-                  Navigator.pushNamed(context, Routes.home);
-                },
-                child: const Text('Bar Chart'))
-          ],
-        ),
+      // body: Center(
+      //   child: _widgetOptions.elementAt(_selectedIndex),
+      // ),
+      ///How to preserve the state of pages
+      body: IndexedStack(
+        index: _selectedIndex,
+        children: _widgetOptions,
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.pushNamed(context, Routes.circularChart);
-        },
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
+      bottomNavigationBar: BottomNavigationBar(
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.bar_chart_sharp), label: 'Bar Chart'),
+          BottomNavigationBarItem(icon: Icon(Icons.business), label: 'Status'),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.access_alarm), label: 'Settings'),
+        ],
+        currentIndex: _selectedIndex,
+        selectedItemColor: Colors.red,
+        selectedLabelStyle: const TextStyle(fontWeight: FontWeight.bold),
+        unselectedItemColor: Colors.amber,
+        onTap: _onItemTapped,
       ),
     );
   }
