@@ -1,8 +1,10 @@
 import 'package:daily_routine/navigation/routes_handler.dart';
 import 'package:daily_routine/presentation/chat/chat_page.dart';
+import 'package:daily_routine/presentation/ex/home.dart';
 import 'package:daily_routine/presentation/home_page.dart';
 import 'package:daily_routine/presentation/settings/settings_page.dart';
 import 'package:daily_routine/presentation/status/status_page.dart';
+import 'package:daily_routine/presentation/todo/to_do_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -38,9 +40,10 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _selectedIndex = 0;
 
-  final _widgetOptions = const [
+  final _widgetOptions = [
     HomePage(),
-    ChatPage(),
+    ///ChatPage(),
+    TodoPage(),
     StatusPage(),
     SettingsPage(),
   ];
