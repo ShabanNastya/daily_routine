@@ -1,7 +1,7 @@
 import 'package:daily_routine/navigation/routes_handler.dart';
 import 'package:daily_routine/presentation/home_page.dart';
+import 'package:daily_routine/presentation/network/network_page.dart';
 import 'package:daily_routine/presentation/settings/settings_page.dart';
-import 'package:daily_routine/presentation/status/status_page.dart';
 import 'package:daily_routine/presentation/todo/to_do_page.dart';
 import 'package:flutter/material.dart';
 
@@ -41,9 +41,9 @@ class _MyHomePageState extends State<MyHomePage> {
 
   final _widgetOptions = [
     HomePage(),
-    ///ChatPage(),
     TodoPage(),
-    StatusPage(),
+    //StatusPage(),
+    NetworkPage(),
     SettingsPage(),
   ];
 
@@ -59,10 +59,6 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      // body: Center(
-      //   child: _widgetOptions.elementAt(_selectedIndex),
-      // ),
-      ///How to preserve the state of pages
       body: IndexedStack(
         index: _selectedIndex,
         children: _widgetOptions,
@@ -71,7 +67,7 @@ class _MyHomePageState extends State<MyHomePage> {
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
           BottomNavigationBarItem(
-              icon: Icon(Icons.bar_chart_sharp), label: 'Bar Chart'),
+              icon: Icon(Icons.list_alt), label: 'To-do'),
           BottomNavigationBarItem(icon: Icon(Icons.business), label: 'Status'),
           BottomNavigationBarItem(
               icon: Icon(Icons.access_alarm), label: 'Settings'),

@@ -70,6 +70,7 @@ class NotesDatabase {
 
   Future<List<Todo>> readAllNotes() async {
     final db = await instance.database;
+
     ///final orderBy = '${NoteFields.title}';
     final result = await db.query(
       tableNote,
@@ -90,7 +91,7 @@ class NotesDatabase {
 
   Future<int> deleteTodo(int id) async {
     final db = await instance.database;
-    return db.delete(tableNote, where: '${NoteFields.id} ?', whereArgs: [id]);
+    return db.delete(tableNote, where: '${NoteFields.id} = ?', whereArgs: [id]);
   }
 
   Future closeDB() async {
