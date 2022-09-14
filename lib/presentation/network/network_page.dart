@@ -14,13 +14,29 @@ class _NetworkPageState extends State<NetworkPage> {
   String? text;
   String? imageUrl;
   bool isCached = false;
+  Dio dio = Dio();
+  late InterceptorsWrapper cacheInterceptor;
+
+  @override
+  void initState() {
+    dio.interceptors.add(LogInterceptor());
+    cacheInterceptor = InterceptorsWrapper(onRequest: (options, handler) {
+      if (isCached && text != null) {
+        return handler
+            .resolve(Response(requestOptions: options, data: 'New new fact'));
+      }
+    }, onResponse: (response, handler) {
+      return handler.resolve(response);
+    });
+
+    dio.interceptors.add(cacheInterceptor);
+    dio.options.baseUrl = 'https://cat-fact.herokuapp.com/facts';
+    super.initState();
+  }
 
   void _sendRequest() async {
     try {
-      Dio dio = Dio();
-      dio.interceptors.add(LogInterceptor());
-      Response catResponse =
-          await dio.get('https://cat-fact.herokuapp.com/facts/random');
+      Response catResponse = await dio.get('/random');
       setState(() {
         text = 'Это данные респонс ${catResponse.data['text']}';
         imageUrl = 'https://http.cat/${catResponse.statusCode}';
@@ -49,7 +65,7 @@ class _NetworkPageState extends State<NetworkPage> {
           ),
           OutlinedButton(
             onPressed: _sendRequest,
-            child: const Text('send fact'),
+            child: const Text('update fact'),
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,

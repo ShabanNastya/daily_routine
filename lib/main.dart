@@ -1,6 +1,6 @@
 import 'package:daily_routine/navigation/routes_handler.dart';
 import 'package:daily_routine/presentation/home_page.dart';
-import 'package:daily_routine/presentation/network/network_page.dart';
+import 'package:daily_routine/presentation/network/file_page.dart';
 import 'package:daily_routine/presentation/settings/settings_page.dart';
 import 'package:daily_routine/presentation/todo/to_do_page.dart';
 import 'package:flutter/material.dart';
@@ -43,7 +43,7 @@ class _MyHomePageState extends State<MyHomePage> {
     HomePage(),
     TodoPage(),
     //StatusPage(),
-    NetworkPage(),
+    FilePage(),
     SettingsPage(),
   ];
 
@@ -66,8 +66,7 @@ class _MyHomePageState extends State<MyHomePage> {
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.list_alt), label: 'To-do'),
+          BottomNavigationBarItem(icon: Icon(Icons.list_alt), label: 'To-do'),
           BottomNavigationBarItem(icon: Icon(Icons.business), label: 'Status'),
           BottomNavigationBarItem(
               icon: Icon(Icons.access_alarm), label: 'Settings'),

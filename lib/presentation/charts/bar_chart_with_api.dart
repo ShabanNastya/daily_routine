@@ -4,7 +4,6 @@ import 'package:charts_flutter/flutter.dart' as charts;
 
 import '../../domain/models/gender.dart';
 
-
 class BarChartWithApi extends StatefulWidget {
   const BarChartWithApi({Key? key}) : super(key: key);
 
