@@ -28,7 +28,9 @@ class _DetailTodoPageState extends State<DetailTodoPage> {
       isLoading = true;
     });
 
-    newTodo = await NotesDatabase.instance.readTodo(widget.todoId);
+    newTodo = await NotesDatabase.instance.readTodo(
+      widget.todoId,
+    );
     setState(() {
       isLoading = false;
     });
@@ -54,11 +56,15 @@ class _DetailTodoPageState extends State<DetailTodoPage> {
               padding: const EdgeInsets.all(8),
               child: ListView(
                 children: [
-                  Text('title ${newTodo.title}'),
+                  Text(
+                    'title ${newTodo.title}',
+                  ),
                   const SizedBox(
                     height: 12,
                   ),
-                  Text('description ${newTodo.description}')
+                  Text(
+                    'description ${newTodo.description}',
+                  )
                 ],
               ),
             ),
@@ -67,26 +73,34 @@ class _DetailTodoPageState extends State<DetailTodoPage> {
 
   Widget editButton() {
     return IconButton(
-        onPressed: () async {
-          if (isLoading) return;
-          await Navigator.of(context).push(
-            MaterialPageRoute(
-              builder: (context) => EditTodoPage(
-                todo: newTodo,
-              ),
+      onPressed: () async {
+        if (isLoading) return;
+        await Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) => EditTodoPage(
+              todo: newTodo,
             ),
-          );
-          refreshNote();
-        },
-        icon: const Icon(Icons.edit));
+          ),
+        );
+        refreshNote();
+      },
+      icon: const Icon(
+        Icons.edit,
+      ),
+    );
   }
 
   Widget deleteButton() {
     return IconButton(
-        onPressed: () async {
-          await NotesDatabase.instance.deleteTodo(widget.todoId);
-          Navigator.pop(context);
-        },
-        icon: const Icon(Icons.delete));
+      onPressed: () async {
+        await NotesDatabase.instance.deleteTodo(
+          widget.todoId,
+        );
+        Navigator.pop(context);
+      },
+      icon: const Icon(
+        Icons.delete,
+      ),
+    );
   }
 }

@@ -25,17 +25,24 @@ class _CircularChartState extends State<CircularChart> {
     return SafeArea(
       child: Scaffold(
         body: SfCircularChart(
-          title: ChartTitle(text: 'This is chart'),
+          title: ChartTitle(
+            text: 'This is chart',
+          ),
           legend: Legend(
-              isVisible: true, overflowMode: LegendItemOverflowMode.wrap),
+            isVisible: true,
+            overflowMode: LegendItemOverflowMode.wrap,
+          ),
           tooltipBehavior: _tooltipBehavior,
           series: <CircularSeries>[
             DoughnutSeries<GData, String>(
-                dataSource: _chartData,
-                xValueMapper: (GData data, _) => data.continent,
-                yValueMapper: (GData data, _) => data.gdp,
-                dataLabelSettings: const DataLabelSettings(isVisible: true),
-                enableTooltip: true),
+              dataSource: _chartData,
+              xValueMapper: (GData data, _) => data.continent,
+              yValueMapper: (GData data, _) => data.gdp,
+              dataLabelSettings: const DataLabelSettings(
+                isVisible: true,
+              ),
+              enableTooltip: true,
+            ),
           ],
         ),
       ),
@@ -59,5 +66,8 @@ class GData {
   final String continent;
   final int gdp;
 
-  GData(this.continent, this.gdp);
+  GData(
+    this.continent,
+    this.gdp,
+  );
 }

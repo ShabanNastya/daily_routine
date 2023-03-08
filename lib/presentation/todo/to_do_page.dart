@@ -9,6 +9,8 @@ import '../../widgets/to_do_card_widget.dart';
 import 'edit_to_do_page.dart';
 
 class TodoPage extends StatefulWidget {
+  const TodoPage({super.key});
+
   @override
   State<TodoPage> createState() => _TodoPageState();
 }
@@ -33,7 +35,9 @@ class _TodoPageState extends State<TodoPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('To-do list page title'),
+        title: const Text(
+          'To-do list page title',
+        ),
         actions: const [
           Icon(Icons.search),
           SizedBox(
@@ -58,7 +62,9 @@ class _TodoPageState extends State<TodoPage> {
           );
           refreshNotes();
         },
-        child: const Icon(Icons.add_circle_outlined),
+        child: const Icon(
+          Icons.add_circle_outlined,
+        ),
       ),
     );
   }
@@ -77,12 +83,17 @@ class _TodoPageState extends State<TodoPage> {
           onTap: () async {
             await Navigator.of(context).push(
               MaterialPageRoute(
-                builder: (context) => DetailTodoPage(todoId: todo.id!),
+                builder: (context) => DetailTodoPage(
+                  todoId: todo.id!,
+                ),
               ),
             );
             refreshNotes();
           },
-          child: TodoCardWidget(todo: todo, index: index),
+          child: TodoCardWidget(
+            todo: todo,
+            index: index,
+          ),
         );
       },
     );

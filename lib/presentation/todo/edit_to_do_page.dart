@@ -44,21 +44,32 @@ class _EditTodoPageState extends State<EditTodoPage> {
   }
 
   Future updateTodo() async {
-    final updateTodo =
-        widget.todo!.copy(title: title, description: description);
-    await NotesDatabase.instance.updateTodo(updateTodo);
+    final updateTodo = widget.todo!.copy(
+      title: title,
+      description: description,
+    );
+    await NotesDatabase.instance.updateTodo(
+      updateTodo,
+    );
   }
 
   Future addNewTodo() async {
-    final newTodo = Todo(title: title, description: description);
-    await NotesDatabase.instance.createNote(newTodo);
+    final newTodo = Todo(
+      title: title,
+      description: description,
+    );
+    await NotesDatabase.instance.createNote(
+      newTodo,
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        actions: [buildButton()],
+        actions: [
+          buildButton(),
+        ],
       ),
       body: Form(
         key: _editTodoKey,
